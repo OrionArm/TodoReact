@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 class Project extends React.Component {
     static propTypes = {
         title: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired,
         onToggle: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
@@ -63,7 +63,7 @@ class Project extends React.Component {
 
     displayTask = () => {
         return (
-            <Link to={`/todo/project/${this.props.title}`}>
+            <Link to={`/todo/project/${this.props.id}`}>
                 <ListGroupItem color="light"
                        className={`todo${this.props.completed ? ' completed' : ''}`}
                 >

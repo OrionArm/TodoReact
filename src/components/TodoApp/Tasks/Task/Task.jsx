@@ -7,9 +7,9 @@ import MyButton from '../../../UI/Button/Button';
 
 class Task extends React.Component {
     static propTypes = {
-        projectId:  PropTypes.number.isRequired,
+        projectId:  PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
-        id: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired,
         onToggle: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,

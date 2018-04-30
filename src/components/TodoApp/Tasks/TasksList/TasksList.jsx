@@ -5,16 +5,25 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import Task from "../Task/Task";
 
 const TasksList = props => {
+    let taskArray;
+    if (props.tasks) {
+        let tasksKeys = Object.keys(props.tasks);
+         taskArray = tasksKeys
+            .map( task => [...Array(props.tasks[task]) ])
+            .reduce((arr, el) => {
+                return arr.concat(el)
+            }, []);
+    }
     return (
         <TransitionGroup component="section" className="todo-list">
-            { props.tasks ?
-                props.tasks.map(todo =>
-                <CSSTransition key={todo.id}
+            { taskArray ?
+                taskArray.map(todo =>
+                <CSSTransition key={todo.idTask}
                                timeout={500}
                                classNames="slide">
                     <Task
-                        key={todo.id}
-                        id={todo.id}
+                        key={todo.idTask}
+                        id={todo.idTask}
                         title={todo.title}
                         completed={todo.completed}
                         onDelete={props.onDelete}
@@ -33,9 +42,9 @@ const TasksList = props => {
 };
 
 TasksList.propTypes = {
-    projectId: PropTypes.number,
-    tasks: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
+    projectId: PropTypes.string,
+    tasks: PropTypes.objectOf(PropTypes.shape({
+        idTask: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired
     })),

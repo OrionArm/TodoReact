@@ -1,0 +1,66 @@
+{
+  "projects": {
+    "id1": {
+      "title": "at Home",
+      "completed": false,
+      "idProject": "id1"
+    },
+    "id2": {
+      "title": "at Work",
+      "completed": true,
+      "idProject": "id2"
+    },
+    "id3": {
+      "title": "at Club",
+      "completed": true,
+      "idProject": "id3"
+    },
+    "id4": {
+      "title": "Hobby",
+      "completed": true,
+      "idProject": "id4"
+    }
+  },
+  "tasks": {
+    "id1": {
+      "id0": {
+        "title": "Clean floor",
+        "completed": false,
+        "idTask": "id0",
+        "idProject": "id1"
+      },
+      "id1": {
+        "title": "Clean windows",
+        "completed": true,
+        "idTask": "id1",
+        "idProject": "id1"
+      },
+      "id2": {
+        "title": "Wash dress",
+        "completed": true,
+        "idTask": "id2",
+        "idProject": "id1"
+      }
+    },
+    "id2": {
+      "id3": {
+        "title": "Clean floor",
+        "completed": false,
+        "idTask": "id3",
+        "idProject": "id2"
+      },
+      "id4": {
+        "title": "Clean windows",
+        "completed": true,
+        "idTask": "id4",
+        "idProject": "id2"
+      },
+      "id5": {
+        "title": "Wash dress",
+        "completed": true,
+        "idTask": "id5",
+        "idProject": "id2"
+      }
+    }
+  }
+}

@@ -3,19 +3,17 @@ import {connect} from 'react-redux';
 import {addTodo} from '../../../actions/index';
 import TasksForm from './TasksForm/TasksForm';
 function mapStateToProps(state, props) {
-    const projectPath = props.projectName;
-    const index = state.projects.findIndex((project) => project.title === projectPath);
     let projectId;
     try {
-        projectId = state.projects[index].id;
+        projectId = state.projects[props.projectId].idProject;
     } catch (e) {
-        projectId = 0;
-        console.log(e);
+        // console.log(e)
     }
 
     return {
         currentProjectId: projectId
-    }
+    };
+
 }
 
 function mapDispatchToProps(dispatch) {

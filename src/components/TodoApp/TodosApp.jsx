@@ -18,7 +18,7 @@ const TodosApp = () => {
 
                         <Route exact path="/todo" render={() => <About/>} />
 
-                        <Route path="/todo/project/:abc" component={TaskView} />
+                        <Route path="/todo/project/:id" component={TaskView} />
 
                     </Switch>
                 </Col>

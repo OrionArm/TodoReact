@@ -18,7 +18,6 @@ class ProjectForm extends React.Component {
 
     handleChange = (e) => {
         let title = e.target.value;
-
         this.setState({title});
     };
 

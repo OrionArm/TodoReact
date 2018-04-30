@@ -16,7 +16,7 @@ const Header = ({children}) => {
             <Navbar color="light" light expand="md">
                 <NavbarBrand href="/">{children} </NavbarBrand>
 
-                <StatsContainer/>
+                {/*<StatsContainer/>*/}
 
                 <Nav className="ml-auto" navbar>
                     <NavItem>

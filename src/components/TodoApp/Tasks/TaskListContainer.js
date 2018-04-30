@@ -4,18 +4,16 @@ import {deleteTodo, toggleTodo, editTodo} from '../../../actions/index';
 import TasksList from "./TasksList/TasksList";
 
 function mapStateToProps(state, props) {
-    const projectPath = props.projectName;
-    const index = state.projects.findIndex((project) => project.title === projectPath);
-    let tasks, projectId;
+    const projectPath = props.projectId;
+    let tasks;
     try {
-        tasks = [] && state.projects[index].tasks;
-        projectId = 1 && state.projects[index].id;
+        tasks = state.tasks[props.projectId];
     } catch (e) {
         console.log(e);
     }
     return {
         tasks: tasks,
-        projectId: projectId
+        projectId: projectPath
     };
 
 }

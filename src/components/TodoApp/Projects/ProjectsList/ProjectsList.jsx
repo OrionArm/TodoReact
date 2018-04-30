@@ -5,18 +5,27 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import Project from "../Project/Project";
 
 const ProjectsList = props => {
+    let projectsKeys = Object.keys(props.projects);
+    let projectsArray;
+    if (projectsKeys) {
+        projectsArray = projectsKeys
+            .map( project => [...Array(props.projects[project]) ])
+            .reduce((arr, el) => {
+                return arr.concat(el)
+            }, []);
+    }
     return (
         <TransitionGroup component="section" className="todo-list">
-            {props.projects ?
-                props.projects.map(todo =>
-                    <CSSTransition key={todo.id}
+            {projectsArray ?
+                projectsArray.map(project =>
+                    <CSSTransition key={project.idProject}
                                    timeout={500}
                                    classNames="slide">
                         <Project
-                            key={todo.id}
-                            id={todo.id}
-                            title={todo.title}
-                            completed={todo.completed}
+                            key={project.idProject}
+                            id={project.idProject}
+                            title={project.title}
+                            completed={project.completed}
                             onDelete={props.onDelete}
                             onToggle={props.onToggle}
                             onEdit={props.onEdit}
@@ -25,14 +34,13 @@ const ProjectsList = props => {
                 )
                 : <div> Нет задач</div>
             }
-
         </TransitionGroup>
     );
 };
 
 ProjectsList.propTypes = {
-    projects: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
+    projects: PropTypes.objectOf(PropTypes.shape({
+        idProject: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired
     })).isRequired,

@@ -1,6 +1,6 @@
 import reducer from "../reducers";
 import {applyMiddleware, createStore, compose} from "redux";
-import state from '../data/state';
+import state from '../data/state2';
 
 const initialStore = {
     projects: [
@@ -24,7 +24,6 @@ const initialStore = {
         }
     ]
 };
-
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

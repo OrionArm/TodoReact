@@ -5,7 +5,8 @@ import Button from '../../../UI/Button/Button';
 
 class TasksForm extends React.Component {
     static propTypes = {
-        onAdd: PropTypes.func.isRequired
+        onAdd: PropTypes.func.isRequired,
+        currentProjectId: PropTypes.string
     };
 
     constructor(props) {
@@ -25,7 +26,7 @@ class TasksForm extends React.Component {
         e.preventDefault();
         let title = this.state.title;
         let projectId = this.props.currentProjectId;
-        if (title) {
+        if (projectId && title) {
             this.props.onAdd({
                 projectId: projectId,
                 taskTitle: title
