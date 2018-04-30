@@ -40,14 +40,14 @@ const Header = ({children}) => {
 };
 
 Header.propTypes = {
-    title: PropTypes.string,
-    light: PropTypes.bool,
-    dark: PropTypes.bool,
-    fixed: PropTypes.string,
     color: PropTypes.string,
-    role: PropTypes.string,
+    dark: PropTypes.bool,
     expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string])
+    fixed: PropTypes.string,
+    light: PropTypes.bool,
+    role: PropTypes.string,
+    tag: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
+    title: PropTypes.string
 };
 
 export default Header;

@@ -12,8 +12,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         onDelete: id => dispatch(deleteProject(id)),
-        onToggle: id => dispatch(toggleProject(id)),
-        onEdit: (id, title) => dispatch(editProject(id, title))
+        onEdit: (id, title) => dispatch(editProject(id, title)),
+        onToggle: id => dispatch(toggleProject(id))
     };
 }
 

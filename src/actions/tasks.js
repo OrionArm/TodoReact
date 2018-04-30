@@ -6,33 +6,33 @@ export const EDIT_TODO = 'EDIT_TODO';
 
 export function addTodo(task) {
     return {
-        type: ADD_TODO,
         projectId: task.projectId,
         taskTitle: task.taskTitle,
+        type: ADD_TODO,
     };
 }
 
 export function deleteTodo(task) {
     return {
-        type: DELETE_TODO,
         projectId: task.projectId,
-        taskId: task.taskId
+        taskId: task.taskId,
+        type: DELETE_TODO
     };
 }
 
 export function toggleTodo(task) {
     return {
-        type: TOGGLE_TODO,
         projectId: task.projectId,
-        taskId: task.taskId
+        taskId: task.taskId,
+        type: TOGGLE_TODO
     };
 }
 
 export function editTodo(task) {
     return {
-        type: EDIT_TODO,
         projectId: task.projectId,
         taskId: task.taskId,
-        taskTitle: task.taskTitle
+        taskTitle: task.taskTitle,
+        type: EDIT_TODO
     };
 }

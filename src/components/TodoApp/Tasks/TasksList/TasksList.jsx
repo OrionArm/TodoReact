@@ -22,14 +22,14 @@ const TasksList = props => {
                                timeout={500}
                                classNames="slide">
                     <Task
-                        key={todo.idTask}
-                        id={todo.idTask}
-                        title={todo.title}
                         completed={todo.completed}
+                        id={todo.idTask}
+                        key={todo.idTask}
                         onDelete={props.onDelete}
-                        onToggle={props.onToggle}
                         onEdit={props.onEdit}
+                        onToggle={props.onToggle}
                         projectId={props.projectId}
+                        title={todo.title}
                     />
                 </CSSTransition>
             )
@@ -42,15 +42,15 @@ const TasksList = props => {
 };
 
 TasksList.propTypes = {
+    onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onToggle: PropTypes.func.isRequired,
     projectId: PropTypes.string,
     tasks: PropTypes.objectOf(PropTypes.shape({
+        completed: PropTypes.bool.isRequired,
         idTask: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        completed: PropTypes.bool.isRequired
-    })),
-    onDelete: PropTypes.func.isRequired,
-    onToggle: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired
+        title: PropTypes.string.isRequired
+    }))
 };
 
 export default TasksList;

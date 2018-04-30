@@ -5,29 +5,29 @@ export const EDIT_PROJECT = 'EDIT_PROJECT';
 
 export function addProject(title) {
     return {
-        type: ADD_PROJECT,
-        title
+        title,
+        type: ADD_PROJECT
     };
 }
 
 export function deleteProject(id) {
     return {
-        type: DELETE_PROJECT,
-        id
+        id,
+        type: DELETE_PROJECT
     };
 }
 
 export function toggleProject(id) {
     return {
-        type: TOGGLE_PROJECT,
-        id
+        id,
+        type: TOGGLE_PROJECT
     };
 }
 
 export function editProject(id, title) {
     return {
-        type: EDIT_PROJECT,
         id,
-        title
+        title,
+        type: EDIT_PROJECT
     };
 }

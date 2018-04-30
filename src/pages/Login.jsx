@@ -6,8 +6,8 @@ class Login extends Component {
         event.preventDefault();
 
         this.props.onLogin({
-            username: this.usernameInput.value,
-            password: this.passwordInput.value
+            password: this.passwordInput.value,
+            username: this.usernameInput.value
         });
     };
 

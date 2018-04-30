@@ -5,8 +5,8 @@ import Button from '../../../UI/Button/Button';
 
 class TasksForm extends React.Component {
     static propTypes = {
-        onAdd: PropTypes.func.isRequired,
-        currentProjectId: PropTypes.string
+        currentProjectId: PropTypes.string,
+        onAdd: PropTypes.func.isRequired
     };
 
     constructor(props) {

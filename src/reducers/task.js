@@ -10,9 +10,9 @@ function taskReducer(state = {}, action) {
     switch (action.type) {
         case ADD_TODO:
             return {
+                completed: false,
                 id: action.id,
-                title: action.title,
-                completed: false
+                title: action.title
             };
 
         case TOGGLE_TODO:
@@ -64,17 +64,17 @@ function taskReducer(state = {}, action) {
 //     }
 // }
 
-let _taskID = 5;
+let taskId = 5;
 
 function reducer(state = [], action) {
 
     switch (action.type) {
         case ADD_TODO: {
-            const idTask = `id${++_taskID}`;
+            const idTask = `id${++taskId}`;
             const newTask = {
+                completed: false,
                 idTask: idTask,
-                title: action.taskTitle,
-                completed: false
+                title: action.taskTitle
             };
             return {
                 ...state,
@@ -114,10 +114,6 @@ function reducer(state = [], action) {
         default:
             return state;
     }
-}
-
-function findProjectTasks(state, projectId) {
-    return state[projectId].tasks;
 }
 
 export default reducer;

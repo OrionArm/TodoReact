@@ -9,11 +9,12 @@ function mapStateToProps(state, props) {
     try {
         tasks = state.tasks[props.projectId];
     } catch (e) {
-        console.log(e);
+
+        Сonsole.log(e);
     }
     return {
-        tasks: tasks,
-        projectId: projectPath
+        projectId: projectPath,
+        tasks: tasks
     };
 
 }
@@ -21,8 +22,8 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch) {
     return {
         onDelete: projectTask => dispatch(deleteTodo(projectTask)),
-        onToggle: projectTask => dispatch(toggleTodo(projectTask)),
-        onEdit: projectTask => dispatch(editTodo(projectTask))
+        onEdit: projectTask => dispatch(editTodo(projectTask)),
+        onToggle: projectTask => dispatch(toggleTodo(projectTask))
     };
 }
 

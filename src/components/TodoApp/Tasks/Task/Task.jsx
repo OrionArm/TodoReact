@@ -7,13 +7,13 @@ import MyButton from '../../../UI/Button/Button';
 
 class Task extends React.Component {
     static propTypes = {
-        projectId:  PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired,
-        onToggle: PropTypes.func.isRequired,
+        id: PropTypes.string.isRequired,
         onDelete: PropTypes.func.isRequired,
         onEdit: PropTypes.func.isRequired,
+        onToggle: PropTypes.func.isRequired,
+        projectId:  PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
 
     };
 
@@ -37,8 +37,8 @@ class Task extends React.Component {
         const title = event.target[0].value;
         if (title !== ""){
             this.props.onEdit({
-                taskId: this.props.id,
                 projectId: this.props.projectId,
+                taskId: this.props.id,
                 taskTitle: title
             });
         }

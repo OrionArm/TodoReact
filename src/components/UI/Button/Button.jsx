@@ -12,10 +12,10 @@ function MyButton(props) {
 }
 
 Button.propTypes = {
-    icon: PropTypes.string,
+    children: PropTypes.node,
     className: PropTypes.string,
-    onClick: PropTypes.func,
-    children: PropTypes.node
+    icon: PropTypes.string,
+    onClick: PropTypes.func
 };
 
 export default MyButton;

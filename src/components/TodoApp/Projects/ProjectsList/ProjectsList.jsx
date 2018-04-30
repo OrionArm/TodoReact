@@ -39,14 +39,14 @@ const ProjectsList = props => {
 };
 
 ProjectsList.propTypes = {
-    projects: PropTypes.objectOf(PropTypes.shape({
-        idProject: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        completed: PropTypes.bool.isRequired
-    })).isRequired,
     onDelete: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
     onToggle: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired
+    projects: PropTypes.objectOf(PropTypes.shape({
+        completed: PropTypes.bool.isRequired,
+        idProject: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired
+    })).isRequired
 };
 
 export default ProjectsList;

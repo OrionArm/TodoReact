@@ -8,12 +8,12 @@ import {Link} from "react-router-dom";
 
 class Project extends React.Component {
     static propTypes = {
-        title: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired,
-        onToggle: PropTypes.func.isRequired,
+        id: PropTypes.string.isRequired,
         onDelete: PropTypes.func.isRequired,
         onEdit: PropTypes.func.isRequired,
+        onToggle: PropTypes.func.isRequired,
+        title: PropTypes.string.isRequired,
 
     };
 
