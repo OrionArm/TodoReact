@@ -2,7 +2,9 @@ import {
     ADD_TODO,
     DELETE_TODO,
     EDIT_TODO,
-    TOGGLE_TODO
+    TOGGLE_TODO,
+    SET_TODO,
+    INIT_TODO_FAIL
 } from "../actions/tasks";
 import update from 'immutability-helper';
 
@@ -38,35 +40,10 @@ function taskReducer(state = {}, action) {
     }
 }
 
-// function oldreducer(state = [], action) {
-//     console.log('taskReducer',state);
-//
-//     switch (action.type) {
-//         case ADD_TODO:
-//             return [...state, taskReducer(undefined, action)];
-//
-//         case DELETE_TODO:
-//             const index = state.findIndex(todo => todo.id === action.id);
-//
-//             return [
-//                 ...state.slice(0, index),
-//                 ...state.slice(index + 1)
-//             ];
-//
-//         case TOGGLE_TODO:
-//             return state.map(todo => taskReducer(todo, action));
-//
-//         case EDIT_TODO:
-//             return state.map(todo => taskReducer(todo, action));
-//
-//         default:
-//             return state;
-//     }
-// }
 
 let taskId = 5;
 
-function reducer(state = [], action) {
+function reducer(state = {}, action) {
 
     switch (action.type) {
         case ADD_TODO: {
@@ -111,8 +88,13 @@ function reducer(state = [], action) {
                 }
             });
         }
-        default:
-            return state;
+        case SET_TODO : {
+            return update(state, {$set: action.tasks})
+        }
+        case INIT_TODO_FAIL : {
+            return update(state, {})
+        }
+        default: return state;
     }
 }
 

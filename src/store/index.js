@@ -1,8 +1,30 @@
-import reducer from "../reducers";
+import reducer from "./reducers";
 import {applyMiddleware, createStore, compose} from "redux";
-import state from '../data/state2';
+import createSagaMiddleware from "redux-saga";
+import {watchProjectsInit, watchTasksInit, watchAuth} from "./sagas";
+import createHistory from 'history/createBrowserHistory';
+import { routerMiddleware } from 'react-router-redux';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, state, composeEnhancers( applyMiddleware(), ));
+
+
+export const history = createHistory();
+const middleware = routerMiddleware(history);
+
+const composeEnhancers = process.env.NODE_ENV === "development"
+        ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore(reducer, composeEnhancers( applyMiddleware(
+    middleware,
+    sagaMiddleware
+    ))
+);
+
+
+// sagaMiddleware.run(watchTasksInit);
+// sagaMiddleware.run(watchProjectsInit);
+sagaMiddleware.run(watchAuth);
 
 export default store;

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {addProject} from '../../../actions/index';
+import {addProject} from '../../../store/actions/index';
 import ProjectForm from "./ProjectForm/Form";
 
 function mapDispatchToProps(dispatch) {

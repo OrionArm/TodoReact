@@ -1,7 +1,8 @@
 import {connect} from 'react-redux';
 
-import {deleteProject, toggleProject, editProject} from '../../../actions/index';
+import {deleteProject, toggleProject, editProject} from '../../../store/actions/index';
 import ProjectsList from "./ProjectsList/ProjectsList";
+import {initProjects} from "../../../store/actions";
 
 function mapStateToProps(state) {
     return {
@@ -13,7 +14,9 @@ function mapDispatchToProps(dispatch) {
     return {
         onDelete: id => dispatch(deleteProject(id)),
         onEdit: (id, title) => dispatch(editProject(id, title)),
-        onToggle: id => dispatch(toggleProject(id))
+        onInitProjects: () => dispatch(initProjects()),
+        onToggle: id => dispatch(toggleProject(id)),
+
     };
 }
 

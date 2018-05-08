@@ -29,9 +29,8 @@ const Header = ({children}) => {
                         <NavLink href="/about">About</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/Login">Sigin</NavLink>
+                        <NavLink href="/login">Sigin</NavLink>
                     </NavItem>
-
                 </Nav>
             </Navbar>
 

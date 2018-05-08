@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {addTodo} from '../../../actions/index';
+import {addTodo} from '../../../store/actions/index';
 import TasksForm from './TasksForm/TasksForm';
 function mapStateToProps(state, props) {
     let projectId;

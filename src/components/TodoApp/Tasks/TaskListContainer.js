@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {deleteTodo, toggleTodo, editTodo} from '../../../actions/index';
+import {deleteTodo, toggleTodo, editTodo, initTodo} from '../../../store/actions/index';
 import TasksList from "./TasksList/TasksList";
 
 function mapStateToProps(state, props) {
@@ -23,7 +23,9 @@ function mapDispatchToProps(dispatch) {
     return {
         onDelete: projectTask => dispatch(deleteTodo(projectTask)),
         onEdit: projectTask => dispatch(editTodo(projectTask)),
-        onToggle: projectTask => dispatch(toggleTodo(projectTask))
+        onInitTasks: () => dispatch(initTodo()),
+        onToggle: projectTask => dispatch(toggleTodo(projectTask)),
+
     };
 }
 

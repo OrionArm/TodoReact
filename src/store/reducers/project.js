@@ -1,8 +1,9 @@
-import {ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT, TOGGLE_PROJECT} from "../actions/projects";
+import {ADD_PROJECT, DELETE_PROJECT, EDIT_PROJECT,
+    TOGGLE_PROJECT, SET_PROJECTS, INIT_PROJECTS_FAIL} from "../actions/projects";
 import update from 'immutability-helper';
 let pId = 5;
 
-function reducer(state = [], action) {
+function reducer(state = {}, action) {
     switch (action.type) {
         case ADD_PROJECT: {
             const projectId = `id${++pId}`;
@@ -30,6 +31,12 @@ function reducer(state = [], action) {
                     title: {$set: action.title},
                 }
             })
+        }
+        case SET_PROJECTS: {
+            return update(state, {$set: action.projects})
+        }
+        case INIT_PROJECTS_FAIL : {
+            return update(state, {})
         }
         default:
             return state;
