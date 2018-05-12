@@ -9,7 +9,6 @@ import TodosApp from './components/TodoApp/TodosApp';
 import About from './pages/About';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
-import Logout from './pages/Logout';
 
 import NotFound from './pages/NotFound';
 
@@ -53,9 +52,6 @@ class App extends React.Component<any, any> {
                         <Route path="/about" component={About}/>
                         <Route path="/todo" component={TodosApp}/>
                         <Route path="/login" component={Auth}/>
-                        <Route path="/logout"
-                               render={() => <Logout onLogin={this.logout}/>}
-                        />
                         <Route component={NotFound}/>
                     </Switch>
                 </Content>

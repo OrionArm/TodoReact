@@ -4,11 +4,11 @@ import {
     Navbar,
     NavbarBrand,
     Nav,
-    NavItem,
-    NavLink,
+    NavItem, NavLink,
 } from 'reactstrap';
 import StatsContainer from "../TodoApp/Stats/StatsContainer";
-
+import {Link} from "react-router-dom";
+import classes from './Header.css';
 
 const Header = ({children}) => {
     return (
@@ -16,20 +16,20 @@ const Header = ({children}) => {
             <Navbar color="light" light expand="md">
                 <NavbarBrand href="/">{children} </NavbarBrand>
 
-                {/*<StatsContainer/>*/}
+                <StatsContainer/>
 
                 <Nav className="ml-auto" navbar>
-                    <NavItem>
-                        <NavLink href="/todo/">ToDo</NavLink>
+                    <NavItem className={classes.Header_nav}>
+                        <Link to="/todo/">ToDo</Link>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/components/">Components</NavLink>
+                        <Link className={classes.Header_nav_link} to="/components/">Components</Link>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/about">About</NavLink>
+                        <Link to="/about">About</Link>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/login">Sigin</NavLink>
+                        <Link to="/login">Auth</Link>
                     </NavItem>
                 </Nav>
             </Navbar>

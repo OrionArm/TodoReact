@@ -1,59 +1,33 @@
 import * as actions from "../actions";
-import { call, fork, select, takeEvery } from 'redux-saga/effects';
-import {dbfirestore, auth} from '../../firebaseIndex';
-
-// export function* initProjectsSaga(action) {
-//     try {
-//         const databaseRef = firebase.database().ref();
-//         const projectsRef = databaseRef.child("projects");
-//
-//         const response = yield projectsRef.on(
-//             "value", snapshot => {
-//                 console.log("response", snapshot.val())
-//             }
-//         );
-//         yield put(actions.setProjects(response.data));
-//     } catch (error) {
-//         yield put(actions.initProjectsFail());
-//     }
-// }
-
-// const projectTransformer = project => {
-//     const res = [];
-//     project.forEach(doc => res.push({
-//         id: doc.id,
-//         ...doc.data()
-//     }));
-//     return res
-// };
-//
-// export function* initProjectsSaga () {
-//     yield fork(
-//         rsf.firestore.syncCollection,
-//         'projects',
-//         {
-//             successActionCreator: actions.setProjects(),
-//             transform: projectTransformer
-//         }
-//     )
-// }
+import {take, call, put, takeEvery, fork, cancel} from 'redux-saga/effects'
+import {auth} from '../../firebase/firebaseIndex'
+import {addProject, getProjects} from '../../firebase/api';
+import {
+    ADD_PROJECT, EDIT_PROJECT, DELETE_PROJECT,
+    ADD_PROJECT_SUCCESS, EDIT_PROJECT_SUCCESS, DELETE_PROJECT_SUCCESS
+} from "../actions/projects";
+import {actionTypes} from "../actions/auth";
 
 
-export function* initProjectsSaga () {
-    // yield dbfirestore.collection("projects").get().then(querySnapshot => {
-    //     querySnapshot.forEach((doc) => {
-    //         doc.data().map(element => {
-    //             console.log(element)
-    //         });
-    //     });
-    // });
+export function* addProjectSaga(action) {
+    const uid = auth.currentUser.uid;
+    const newProject = {
+        completed: false,
+        title: action.title,
+    };
+    yield call(addProject, {uid, project: newProject});
+    yield put(ADD_PROJECT_SUCCESS);
 
-    // yield dbfirestore.collection("projects")
-    // yield login().createUserWithEmailAndPassword("Doom@ya.ru", "123").catch(function(error) {
-    //     // Handle Errors here.
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log('errorMessage', errorMessage);
-    // });
-    yield auth()
+}
+
+export function* initProjectSaga() {
+    yield take(actionTypes.LOGIN.SUCCESS);
+    const uid = yield select(state => state.auth.userId);
+    try {
+        const projects = yield call(getProjects, uid);
+        // yield projects.then(snapshot => data = snapshot.val);
+        // yield console.dir( 'data', );
+    } catch (e) {
+        console.log(e)
+    }
 }

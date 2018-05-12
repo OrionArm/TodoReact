@@ -20,6 +20,7 @@ export const actionTypes = {
         CHECK_TIMEOUT: 'CHECK_TIMEOUT',
         REDIRECT_PATH: 'REDIRECT_PATH',
         CHECK_STATE: 'CHECK_STATE',
+        USER_REMOVE: 'USER_REMOVE',
         USER_IS_LOGIN: 'USER_IS_LOGIN',
         USER_IS__NOT_LOGIN: 'USER_IS__NOT_LOGIN',
     },
@@ -31,11 +32,16 @@ export const logInStart = () => {
     };
 };
 
+export const removeUser = () => {
+    return {
+        type: actionTypes.AUTH.USER_REMOVE
+    };
+};
+
 export const logInSuccess = authData => {
     return {
         type: actionTypes.LOGIN.SUCCESS,
-        idToken: authData.token,
-        userId: authData.userId
+        user: authData
     };
 };
 
@@ -103,15 +109,20 @@ export const signUpStart = () => {
 export const signUpSucceed = authData => {
     return {
         type: actionTypes.SIGNUP.SUCCESS,
-        idToken: authData.token,
-        userId: authData.userId,
-        user: authData.user
+        user: authData
     }
 };
 
 export const signUpFail = (error) => {
     return {
         type: actionTypes.SIGNUP.FAILURE,
+        error: error
+    }
+};
+
+export const isNotLogin = (error) => {
+    return {
+        type: actionTypes.AUTH.USER_IS__NOT_LOGIN,
         error: error
     }
 };
@@ -123,9 +134,3 @@ export const isLogin = (user) => {
     }
 };
 
-export const isNotLogin = (error) => {
-    return {
-        type: actionTypes.AUTH.USER_IS__NOT_LOGIN,
-        error: error
-    }
-};

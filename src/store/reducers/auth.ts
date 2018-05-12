@@ -9,25 +9,21 @@ const updateObject = (oldObject, updatedProperties) => {
 
 const initialState = {
     user: null,
-    token: null,
-    userId: null,
     error: null,
     loading: false,
 };
 
-const authStart = ( state, action ) => {
+const logInStart = ( state, action ) => {
     return updateObject( state, { error: null, loading: true } );
 };
-const authSuccess = (state, action) => {
+const logInSuccess = (state, action) => {
     return updateObject( state, {
         user: action.user,
-        token: action.idToken,
-        userId: action.userId,
         error: null,
         loading: false
     } );
 };
-const authFail = (state, action) => {
+const logInFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: false
@@ -38,37 +34,51 @@ const authLogout = (state, action) => {
 
 };
 
-const signStart = (state, action) => {
+const signUpStart = (state, action) => {
     return updateObject( state, { error: null, loading: true } );
 };
-const signSuccess = (state, action) => {
+const signUpSuccess = (state, action) => {
     return updateObject( state, {
         user: action.user,
-        token: action.idToken,
-        userId: action.userId,
         error: null,
         loading: false
     } );
 };
-const signFail = (state, action) => {
+const signUpFail = (state, action) => {
     return updateObject( state, {
         error: action.error,
         loading: false
     });
 };
 
+const updateUser = (state, action) => {
+    return updateObject( state, {
+        error: null,
+        loading: false,
+        user: action.user
+    });
+};
+
+const removeUser = (state, action) => {
+    return updateObject( state, {
+        error: null,
+        loading: false,
+        user: null
+    });
+};
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case actionTypes.LOGIN.REQUEST:  return authStart(state, action);
-        case actionTypes.LOGIN.SUCCESS:  return authSuccess(state, action);
-        case actionTypes.LOGIN.FAILURE:  return authFail(state, action);
-        case actionTypes.SIGNUP.REQUEST: return signStart(state, action);
-        case actionTypes.SIGNUP.SUCCESS: return signSuccess(state, action);
-        case actionTypes.SIGNUP.FAILURE: return signFail(state, action);
-        case actionTypes.LOGOUT.REQUEST: return authLogout(state, action);
-        default:
-            return state;
+        case actionTypes.LOGIN.REQUEST:      return logInStart(state, action);
+        case actionTypes.LOGIN.SUCCESS:      return logInSuccess(state, action);
+        case actionTypes.LOGIN.FAILURE:      return logInFail(state, action);
+        case actionTypes.SIGNUP.REQUEST:     return signUpStart(state, action);
+        case actionTypes.SIGNUP.SUCCESS:     return signUpSuccess(state, action);
+        case actionTypes.SIGNUP.FAILURE:     return signUpFail(state, action);
+        case actionTypes.AUTH.USER_REMOVE:   return removeUser(state, action);
+        case actionTypes.LOGOUT.REQUEST:     return authLogout(state, action);
+        case actionTypes.AUTH.USER_IS_LOGIN: return updateUser(state, action);
+        default:                             return state;
     }
 };
 

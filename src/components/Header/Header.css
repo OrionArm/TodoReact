@@ -1,0 +1,9 @@
+.Header_nav_link{
+  color: rgba(0, 0, 0, .5);
+  padding: .5rem 1rem;
+}
+
+.Header_nav:hover {
+  color: crimson;
+
+}

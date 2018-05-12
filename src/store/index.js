@@ -1,7 +1,7 @@
 import reducer from "./reducers";
 import {applyMiddleware, createStore, compose} from "redux";
 import createSagaMiddleware from "redux-saga";
-import {watchProjectsInit, watchTasksInit, watchAuth} from "./sagas";
+import {watchProjects, watchAuth} from "./sagas";
 import createHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
 
@@ -23,8 +23,7 @@ const store = createStore(reducer, composeEnhancers( applyMiddleware(
 );
 
 
-// sagaMiddleware.run(watchTasksInit);
-// sagaMiddleware.run(watchProjectsInit);
 sagaMiddleware.run(watchAuth);
+sagaMiddleware.run(watchProjects);
 
 export default store;

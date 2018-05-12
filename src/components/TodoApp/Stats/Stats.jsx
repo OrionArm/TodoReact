@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 const Stats = ({projects}) => {
     let total = projects.length;
-    let completed = projects.filter(project => project.completed).length;
+    const projectsKey = Object.keys(projects);
+    let completed = projectsKey.filter(project => project.completed).length;
     let notCompleted = total - completed;
 
     return (

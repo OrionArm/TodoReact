@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
 import {Button, Form, FormGroup, Label, Input, Container} from 'reactstrap';
-import {auth} from "../firebaseIndex";
 import {connect} from "react-redux";
-import {logIn, signUp, logout} from "../store/actions";
 import Toggle from 'react-toggle';
 import "react-toggle/style.css";
-import {push} from 'react-router-redux';
+
+import {logIn, signUp, logout, authCheckState} from "../store/actions";
 
 
 class Auth extends Component {
     state = {
-        isSignedIn: false,
+        auth: false,
         signUp: false,
     };
 
@@ -36,13 +35,11 @@ class Auth extends Component {
     };
 
     componentDidMount() {
-        auth.onAuthStateChanged(
-            (user) => this.setState({isSignedIn: !!user})
-        );
+        if (this.props.auth) this.setState({auth: !this.state.auth})
     }
 
     render() {
-        if (!this.state.isSignedIn) {
+        if (!this.state.auth) {
             return <Container className="loginForm">
                 {this.state.signUp ? <span>Registration</span> : <span>Login</span>}
                 <br/>
@@ -52,10 +49,11 @@ class Auth extends Component {
                         defaultChecked={this.state.signUp}
                         onChange={this.toggleAuth}/>
                 </label>
-                <Form onSubmit={this.onSubmit}>
+                <Form onSubmit={this.onSubmit} autoComplete="on">
                     <FormGroup>
                         <Label for="Email">Email</Label>
                         <Input type="email" name="email"
+                               autoComplete="on"
                                placeholder="Адрес электронной почты"
                         />
                     </FormGroup>
@@ -64,10 +62,10 @@ class Auth extends Component {
                         <Label for="Password">Password</Label>
                         <Input type="password"
                                name="password"
+                               autoComplete="on"
                                placeholder="Пароль"
                         />
                     </FormGroup>
-
 
                     <br/>
                     <Button type="submit">Войти</Button>
@@ -77,11 +75,19 @@ class Auth extends Component {
         }
         return (
             <Container className="loginForm">
-                <p>Welcome {auth.currentUser.displayName}! You are now signed-in!</p>
+                <p>Welcome {this.props.auth.displayName}! You are now signed-in!</p>
                 <button onClick={this.props.onLogout}>Sign-out</button>
+                <button onClick={this.props.checkAuth}>Check auth</button>
+
             </Container>
         );
     }
+}
+
+function mapStateToProps(state) {
+    return {
+        auth: state.auth.user
+    };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -89,7 +95,8 @@ function mapDispatchToProps(dispatch) {
         onSignIn: authData => dispatch(logIn(authData)),
         onSignUp: authData => dispatch(signUp(authData)),
         onLogout: () => dispatch(logout()),
+        checkAuth: () => dispatch(authCheckState()),
     };
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
