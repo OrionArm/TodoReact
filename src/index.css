@@ -4,24 +4,3 @@ body {
   font-family: sans-serif;
 }
 
-.stats {
-  margin: 10px;
-}
-
-.stats table {
-  margin: auto;
-}
-
-.stats th {
-  text-align: right;
-}
-
-.stats td {
-  font-size: 20px;
-  text-align: left;
-  font-family: monospace;
-}
-
-/*.side-bar {*/
-  /*height: 1000px;*/
-/*}*/

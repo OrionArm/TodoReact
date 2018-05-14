@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import StatsContainer from "../TodoApp/Stats/StatsContainer";
 import {Link} from "react-router-dom";
-import classes from './Header.css';
+import './Header.css';
 
 const Header = ({children}) => {
     return (
@@ -18,20 +18,20 @@ const Header = ({children}) => {
 
                 <StatsContainer/>
 
-                <Nav className="ml-auto" navbar>
-                    <NavItem className={classes.Header_nav}>
-                        <Link to="/todo/">ToDo</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link className={classes.Header_nav_link} to="/components/">Components</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/about">About</Link>
-                    </NavItem>
-                    <NavItem>
-                        <Link to="/login">Auth</Link>
-                    </NavItem>
-                </Nav>
+                <ul className="Nav-menu">
+                    <li className="Nav-menu__item">
+                        <Link className="Nav-menu__item__link" to="/todo/">ToDo</Link>
+                    </li>
+                    <li className="Nav-menu__item">
+                        <Link className="Nav-menu__item__link" to="/components/">Components</Link>
+                    </li>
+                    <li className="Nav-menu__item">
+                        <Link className="Nav-menu__item__link" to="/about/">About</Link>
+                    </li>
+                    <li className="Nav-menu__item">
+                        <Link className="Nav-menu__item__link" to="/login/">Auth</Link>
+                    </li>
+                </ul>
             </Navbar>
 
         </header>

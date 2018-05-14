@@ -1,26 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Stats.css';
+
 
 const Stats = ({projects}) => {
-    let total = projects.length;
+    console.log(projects);
     const projectsKey = Object.keys(projects);
-    let completed = projectsKey.filter(project => project.completed).length;
+    let total = projectsKey.length;
+    let completed = projectsKey.filter(project => projects[project].completed === true).length;
+
     let notCompleted = total - completed;
 
     return (
-        <table className="stats">
+        <table className="Stats-table">
             <tbody>
             <tr>
-                <th>Всего проектов</th>
-                <td>{total}</td>
+                <th className="Stats-table__th">Всего проектов</th>
+                <td className="Stats-table__td">{total}</td>
             </tr>
             <tr>
-                <th>Выполнено</th>
-                <td>{completed}</td>
+                <th className="Stats-table__th">Выполнено</th>
+                <td className="Stats-table__td">{completed}</td>
             </tr>
             <tr>
-                <th>Осталось</th>
-                <td>{notCompleted}</td>
+                <th className="Stats-table__th">Осталось</th>
+                <td className="Stats-table__td">{notCompleted}</td>
             </tr>
             </tbody>
         </table>

@@ -1,9 +1,26 @@
-.Header_nav_link{
-  color: rgba(0, 0, 0, .5);
-  padding: .5rem 1rem;
+
+.Nav-menu{
+  float: right;
+  margin: 0 0 0 auto;
+  list-style: none;
 }
 
-.Header_nav:hover {
-  color: crimson;
+.Nav-menu__item{
+  float: left;
+  width: 14em;
+  border-right: none;
 
+}
+
+.Nav-menu__item__link{
+  display: block;
+  text-decoration: none;
+  color: #222222;
+  font-size: 1.5rem;
+  border-right: none;
+}
+
+.Nav-menu__item__link:hover{
+  font-weight: bold;
+  color: #61dbfb;
 }
